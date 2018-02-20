@@ -7,7 +7,6 @@ import (
 
 type Neuron struct {
 	Weight     []float64
-	Bias       float64
 	Activation func(float64) float64
 }
 
@@ -35,18 +34,18 @@ func main() {
 
 	a = 0.0
 	b = 0.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict([]float64{a, b, 1}))
+	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
 
 	a = 1.0
 	b = 0.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict([]float64{a, b, 1}))
+	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
 
 	a = 0.0
 	b = 1.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict([]float64{a, b, 1}))
+	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
 
 	a = 1.0
 	b = 1.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict([]float64{a, b, 1}))
+	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
 
 }
