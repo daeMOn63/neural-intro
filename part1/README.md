@@ -220,7 +220,7 @@ We get the following result:
 (1.000000,1.000000) = 1.000000
 ```
 
-Next, in part 2, we'll see how the network can use **training** to learn by itself those w1, w2 and w3 values.
+Next, in [part 2](../part2/README.md), we'll see how the network can use **training** to learn by itself those w1, w2 and w3 values.
 
 ## Bonus
 
