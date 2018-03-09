@@ -228,7 +228,7 @@ for i=0; i<epochs; i++
 		y = Predict(x1,x2)
 
 		w1 = w1 - dE/dw1 * learningRate
-		w2 = w2 - dE/dw1 * learningRate
+		w2 = w2 - dE/dw2 * learningRate
 		w3 = w3 - dE/dw3 * learningRate
 	endfor
 endfor
