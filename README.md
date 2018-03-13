@@ -10,8 +10,8 @@ But for the need of this presentation, let's define a basic neural network:
 
 As shown above, this network:
 
-- take some inputs (*Ix* nodes)
-- has a single layer of *neurons* (noted *Ox* above)
-- produce as many outputs values as *Ox*'s neurons.
+- take some inputs (*xn* nodes)
+- has a single layer of *neurons* (noted *on* above)
+- produce as many outputs values as *on*'s neurons.
 
 Still it can be even more simplified, that's what we'll see trying to solve a first problem in [Part 1 - The OR gate](part1/README.md).
