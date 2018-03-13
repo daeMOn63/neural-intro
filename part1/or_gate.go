@@ -10,14 +10,13 @@ type Neuron struct {
 	Activation func(float64) float64
 }
 
-func (p Neuron) Predict(I1, I2, B float64) float64 {
+func (p Neuron) Predict(x1, x2, b float64) float64 {
 
 	var output float64
 
-	for i, input := range []float64{I1, I2, B} {
+	for i, input := range []float64{x1, x2, b} {
 		output += p.Weight[i] * input
 	}
-
 	return p.Activation(output)
 }
 
@@ -30,22 +29,21 @@ func main() {
 		},
 	}
 
-	var a, b float64
+	var x1, x2 float64
 
-	a = 0.0
-	b = 0.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
+	x1 = 0.0
+	x2 = 0.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 
-	a = 1.0
-	b = 0.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
+	x1 = 1.0
+	x2 = 0.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 
-	a = 0.0
-	b = 1.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
+	x1 = 0.0
+	x2 = 1.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 
-	a = 1.0
-	b = 1.0
-	fmt.Printf("(%f,%f) = %f\n", a, b, p.Predict(a, b, 1))
-
+	x1 = 1.0
+	x2 = 1.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 }

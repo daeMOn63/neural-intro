@@ -13,11 +13,11 @@ type Neuron struct {
 	ActivationDerivative func(float64) float64
 }
 
-func (p Neuron) Predict(I1, I2 float64) float64 {
+func (p Neuron) Predict(x1, x2 float64) float64 {
 
 	var output float64
 
-	for i, input := range []float64{I1, I2, 1} {
+	for i, input := range []float64{x1, x2, 1} {
 		output += p.Weight[i] * input
 	}
 
@@ -71,35 +71,35 @@ func main() {
 
 	p.Train(
 		[][]float64{ // List of Inputs
-			[]float64{0, 1},
-			[]float64{1, 1},
-			[]float64{1, 0},
 			[]float64{0, 0},
+			[]float64{0, 1},
+			[]float64{1, 0},
+			[]float64{1, 1},
 		},
 		[]float64{ // Expected outputs
-			1,
-			1,
-			1,
 			0,
+			1,
+			1,
+			1,
 		},
 	)
 
 	// Test our data and print the network result
-	var a, b float64
+	var x1, x2 float64
 
-	a = 0.0
-	b = 0.0
-	fmt.Printf("(%f,%f) -> %f\n", a, b, p.Predict(a, b))
+	x1 = 0.0
+	x2 = 0.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 
-	a = 1.0
-	b = 0.0
-	fmt.Printf("(%f,%f) -> %f\n", a, b, p.Predict(a, b))
+	x1 = 1.0
+	x2 = 0.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 
-	a = 0.0
-	b = 1.0
-	fmt.Printf("(%f,%f) -> %f\n", a, b, p.Predict(a, b))
+	x1 = 0.0
+	x2 = 1.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 
-	a = 1.0
-	b = 1.0
-	fmt.Printf("(%f,%f) -> %f\n", a, b, p.Predict(a, b))
+	x1 = 1.0
+	x2 = 1.0
+	fmt.Printf("(%f,%f) = %f\n", x1, x2, p.Predict(x1, x2, 1))
 }

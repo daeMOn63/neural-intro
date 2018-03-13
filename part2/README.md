@@ -82,7 +82,7 @@ From here, we can place our actual outputs on it:
 
 ![Error functions with our random weights](../img/part2/errors_and_random_weights.png "Error functions and our random weights")
 
-- green point, corresponding to (0,1) input, which is correct answer is at the bottom of the blue curve.
+- Green point, corresponding to (0,1) input, which is correct answer is at the bottom of the blue curve.
 - Other points are wrong (*E(y) >> 0*), but on their respective curves.
 
 Now the goal will be to adjust our weights, so each points slides slowly down to the minimum of the curve.
@@ -152,7 +152,7 @@ We can obtain same result as above a bit quicker. First let's remember our netwo
 ![Or network detailed](../img/part2/or_network_detailed.png "Or network detailed")
 
 The chain rule allows us to *express the derivative of the composition of 2 or more functions*.
->e can write like so:
+we can write it like so:
 
 ![w1 gradient](../img/part2/gradient_w1.png "w1 gradient")
 
@@ -168,7 +168,7 @@ So:
 dS/dw1 = 1*x1 + 0 + 0
 dS/dw1 = x1
 
-This also give:
+This gives:
 dS/dw2 = x2
 dS/dw3 = 1
 ```
@@ -176,13 +176,13 @@ dS/dw3 = 1
 Second member dy/dS:
 
 ```
-We had;
+We had:
 y = A(S)
 
 So:
 dy/dS = A'(S) where A is a Sigmoid and it derivate as: A'(S) = A(S) * (1 - A(S))
 
-This give:
+This gives:
 dy/dS = y * (1 - y)
 ```
 
@@ -207,11 +207,11 @@ dE/dw2 = -2 * (t - y) * (y * (1 - y)) * x2
 dE/dw3 = -2 * (t - y) * (y * (1 - y)) * 1
 ```
 
-As we can see, both methods lead to same results. We now have expressed the contribution of each weights to the global error.
+As we can see, both methods lead to the same results. We now have expressed the contribution of each weights to the global error.
 
 ### Descent & Backpropagation
 
-Now that we have a gradient expression, we can calculate by how much we need to update our weights given a network output. Then, as we want to **descend** toward the minimum of the error, we'll need to substract it to our weights. But, we want also to take **small steps** doing that, as fully substracting the gradient to the weight may overshoot the minimum and make the network unable to reach it.
+Now that we have a gradient expression, we can calculate by how much we need to update our weights given a network output. Then, as we want to **descend** toward the minimum of the error, we'll need to substract it from our weights. But, we want also to take **small steps** doing that, as fully substracting the gradient from the weight may overshoot the minimum and make the network unable to reach it.
 
 This step size is usually defined by the **learning rate** of a neural network. Which is a constant defined to a small value (like 0.1) which will get multiplied to our gradient to apply only 10% of it, in our example.
 
@@ -236,13 +236,13 @@ endfor
 
 As we see, we're removing a fraction of each weight's gradient to their respective weights. Making them slowly produce a more accurate output on each epoch loops.
 
-Now, how do define learning rate and epochs ?
+Now, how to define the learning rate and the epochs variables?
 
 Learning rate:
 
-- the smaller it gets, the most accurate the results will be.
-- but will also increase the number of epochs needed to get to the minimum.
-- if too big, you may overshoot the minimum and get stuck oscillating around it.
+- The smaller it gets, the most accurate the results will be.
+- But will also increase the number of epochs needed to get to the minimum.
+- If too big, you may overshoot the minimum and get stuck oscillating around it.
 
 Epochs:
 
@@ -416,6 +416,8 @@ $ go run train.go
 (0.000000,1.000000) -> 0.915328
 (1.000000,1.000000) -> 0.998621
 ```
+
+We notice that we get slighly less accurate results than the first version where we calculated manually the numbers. This could mean we need more epochs and/or a smaller learning rate to refine the output. But for now, this is showing what we want if we considere as 0 everything below 0.2 and 1 everything above 0.8.
 
 As extra, we can observe what's going on inside the network.
 

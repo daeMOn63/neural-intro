@@ -19,14 +19,14 @@ Each **inputs** has its own weight. Plus an extra **bias input**, always equals 
 
 As a first example, we'll try to make a neuron able to solve a OR gate. As a reminder, OR gate is like this:
 
-I1 | I2 | Output
+x1 | x2 | Output
 --- | --- | ---
 0| 0 | 0
 0 | 1 | 1
 1 | 0 | 1
 1 | 1 | 1
 
-Which can be visualized in a plan:
+Which can be visualized in a plot:
 
 ![or_gate](../img/part1/or.png "The OR gate")
 
@@ -46,14 +46,14 @@ Now let's see how we can make our neuron do the same.
 
 Let's first define our network structure:
 
- - 2 inputs
- - 1 output
+ - 2 inputs (x1 and x2)
+ - 1 output (y)
 
 ![or_network](../img/part1/or_network.png "The OR network")
 
 So we have the following:
 
-y = A((w1\*X1) + (w2\*X2) + (w3\*1))
+y = A((w1\*x1) + (w2\*x2) + (w3\*1))
 
 From here, we want to define what should be this A function, and what are the values of w1, w2 and b such as:
 
@@ -142,6 +142,7 @@ So we have :
 ```
 
 This seems to work !
+We picked large numbers there to maximize the effect of the sigmoid function and get results closers to the expected 0 or 1. This also works with numbers like 4, 6 and -1 but would produce outputs like 0.95 or 0.25...
 
 Let's draw this line on the first plot to see how it looks. We can get the line equation by resolving:
 ```
@@ -167,7 +168,6 @@ We start by defining a type for our neuron:
 ```go
 type Neuron struct {
 	Weight     []float64
-	Bias       float64
 	Activation func(float64) float64
 }
 ```
@@ -189,18 +189,18 @@ func main() {
 Then, we want to create a new function, taking the input data, and returning an output like so:
 
 ```go
-out := p.Predict(0.0, 1.0, 1.0) // I1, I2 and B
+out := p.Predict(0.0, 1.0, 1.0) // x1, x2 and b
 ```
 
 And finally the Predict function, where we sum all the inputs multiplied by their weights, and give this to the activation function:
 
 ```go
 
-func (p Neuron) Predict(I1, I2, B float64) float64 {
+func (p Neuron) Predict(x1, x2, b float64) float64 {
 
 	var output float64
 
-	for i, input := range []float64{I1, I2, B} {
+	for i, input := range []float64{x1, x2, b} {
 		output += p.Weight[i] * input
 	}
 
@@ -219,6 +219,8 @@ We get the following result:
 (0.000000,1.000000) = 1.000000
 (1.000000,1.000000) = 1.000000
 ```
+
+We're even out of the float64 precision thus output get rounded to 0 and 1 directly.
 
 Next, in [part 2](../part2/README.md), we'll see how the network can use **training** to learn by itself those w1, w2 and w3 values.
 
